@@ -1,6 +1,8 @@
 package me.cg360.mod.bridging.raytrace;
 
+import me.cg360.mod.bridging.BridgingMod;
 import net.minecraft.core.Direction;
+import net.minecraft.resources.ResourceLocation;
 
 /**
  * Used to determine the indicator that should be
@@ -8,19 +10,18 @@ import net.minecraft.core.Direction;
  */
 public enum PlacementAlignment {
 
-    UP(64),
-    DOWN(0),
-    HORIZONTAL(32);
+    UP("up"),
+    DOWN("down"),
+    HORIZONTAL("horizontal");
 
+    private final ResourceLocation textureLocation;
 
-    private final int textureOffset;
-
-    PlacementAlignment(int textureOffset) {
-        this.textureOffset = textureOffset;
+    PlacementAlignment(String textureName) {
+        this.textureLocation = ResourceLocation.tryBuild(BridgingMod.MOD_ID, "indicator/%s".formatted(textureName));
     }
 
-    public int getTextureOffset() {
-        return this.textureOffset;
+    public ResourceLocation getTexturePath() {
+        return this.textureLocation;
     }
 
     public static PlacementAlignment from(Direction direction) {

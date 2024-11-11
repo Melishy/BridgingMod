@@ -1,5 +1,6 @@
 package me.cg360.mod.bridging.mixin;
 
+import com.mojang.blaze3d.resource.GraphicsResourceAllocator;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import me.cg360.mod.bridging.BridgingMod;
@@ -26,14 +27,10 @@ public abstract class OutlineRendererMixin {
 
     @Shadow protected abstract void checkPoseStack(PoseStack poseStack);
 
-    @Inject(method = "renderLevel(Lnet/minecraft/client/DeltaTracker;ZLnet/minecraft/client/Camera;Lnet/minecraft/client/renderer/GameRenderer;Lnet/minecraft/client/renderer/LightTexture;Lorg/joml/Matrix4f;Lorg/joml/Matrix4f;)V",
-            at = @At(
-                    value = "INVOKE",
-                    target = "Lnet/minecraft/client/renderer/debug/DebugRenderer;render(Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/MultiBufferSource$BufferSource;DDD)V",
-                    shift = At.Shift.BEFORE,
-                    ordinal = 0
-            ))
-    public void renderTracedViewPath(DeltaTracker deltaTracker, boolean renderBlockOutline, Camera camera, GameRenderer gameRenderer, LightTexture lightTexture, Matrix4f matA, Matrix4f matB, CallbackInfo ci) {
+    @Inject(method = "Lnet/minecraft/client/renderer/LevelRenderer;renderBlockOutline(Lnet/minecraft/client/Camera;Lnet/minecraft/client/renderer/MultiBufferSource$BufferSource;Lcom/mojang/blaze3d/vertex/PoseStack;Z)V",
+            at = @At("HEAD")
+            )
+    public void renderTracedViewPath(Camera camera, MultiBufferSource.BufferSource bufferSource, PoseStack poseStack, boolean bl, CallbackInfo ci) {
         boolean isInDebugMenu = this.minecraft.getDebugOverlay().showDebugScreen();
 
         // Rules to display any bridging - whether these are followed or not depends on the config :)
@@ -53,12 +50,11 @@ public abstract class OutlineRendererMixin {
         if(!(isOutlineEnabled || isNonBridgeOutlineEnabled))
             return;
 
-        MultiBufferSource.BufferSource bufferSource = this.renderBuffers.bufferSource();
         VertexConsumer vertices = bufferSource.getBuffer(RenderType.lines());
 
         // Creating a fresh pose stack should be fine - the main pose stack is meant to be
         // empty before rendering the vanilla outline anyway.
-        PoseStack poseStack = new PoseStack();
+        //PoseStack poseStack = new PoseStack();
 
 
         if(isInDebugMenu && BridgingMod.getConfig().shouldShowDebugTrace())

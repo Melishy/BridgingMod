@@ -13,7 +13,9 @@ import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.DebugScreenOverlay;
 import net.minecraft.client.player.LocalPlayer;
+import net.minecraft.client.renderer.CoreShaders;
 import net.minecraft.client.renderer.GameRenderer;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.core.Direction;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
@@ -27,7 +29,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public class CrosshairRenderingMixin {
 
     @Unique
-    private static final int ICON_SIZE = 31;
+    private static final int ICON_SIZE = 32;
 
     @Shadow @Final private Minecraft minecraft;
 
@@ -52,7 +54,7 @@ public class CrosshairRenderingMixin {
         PlacementAlignment alignment = PlacementAlignment.from(direction);
 
         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
-        RenderSystem.setShader(GameRenderer::getPositionTexShader);
+        RenderSystem.setShader(CoreShaders.RENDERTYPE_LINES);
         RenderSystem.enableBlend();
         RenderSystem.blendFuncSeparate(
                 GlStateManager.SourceFactor.ONE_MINUS_DST_COLOR,
@@ -66,20 +68,21 @@ public class CrosshairRenderingMixin {
 
         if(alignment == null) return;
 
-        int x = (w - ICON_SIZE) / 2;
+        int x = ((w - ICON_SIZE) / 2) + 1;
         int y = ((h - ICON_SIZE) / 2);
 
         y += BridgingCrosshairTweaks.yShift;
         y += this.debugOverlay.showDebugScreen() ? 15 : 0;
 
-        gui.blit(
-                BridgingMod.PLACEMENT_ICONS_TEXTURE, x, y,
-                alignment.getTextureOffset(), 0,
+        gui.blitSprite(
+                RenderType::crosshair,
+                alignment.getTexturePath(),
+                x, y,
                 ICON_SIZE, ICON_SIZE
         );
 
         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
-        RenderSystem.setShader(GameRenderer::getPositionTexShader);
+        RenderSystem.setShader(CoreShaders.RENDERTYPE_LINES);
         RenderSystem.enableBlend();
         RenderSystem.defaultBlendFunc();
     }

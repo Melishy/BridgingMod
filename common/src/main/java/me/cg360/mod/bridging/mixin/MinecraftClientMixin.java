@@ -115,7 +115,8 @@ public abstract class MinecraftClientMixin {
             this.rightClickDelay = Math.max(0, BridgingMod.getConfig().getDelayPostBridging());
             info.cancel();
 
-            if (!blockPlaceResult.shouldSwing()) return;
+            if(true) return;
+            //if (!blockPlaceResult.shouldSwing()) return;
 
             this.player.swing(hand);
             boolean stackSizeChanged = itemStack.getCount() != originalStackSize || this.gameMode.hasInfiniteItems();
@@ -178,7 +179,7 @@ public abstract class MinecraftClientMixin {
         if(!(blockItem.getBlock() instanceof SlabBlock)) return null;
 
         // Get the block to place "upgrade" the slab from
-        BlockPos buildingOffPos = pos.offset(dir.getNormal().multiply(-1));
+        BlockPos buildingOffPos = pos.offset(dir.getUnitVec3i().multiply(-1));
         BlockState localState = this.level.getBlockState(buildingOffPos);
 
         if(!(localState.getBlock() instanceof SlabBlock)) return null;

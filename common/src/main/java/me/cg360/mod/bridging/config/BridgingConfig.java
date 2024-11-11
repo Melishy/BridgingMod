@@ -71,7 +71,7 @@ public class BridgingConfig extends DefaultValueTracker {
     private boolean skipTorchBridging = true;
     @Category("fixes") @SerialEntry
     @IncludeExtraDescription(extraParagraphs = 3)
-    @IncludeImage("textures/gui/config/bridging_slabs_horizontal.png")
+    @IncludeAnimatedImage("textures/gui/config/bridging_slabs_horizontal.webp")
     private boolean enableSlabAssist = true;
     @Category("fixes") @SerialEntry
     private boolean enableNonSolidReplace = true;
