@@ -68,8 +68,8 @@ public class CrosshairRenderingMixin {
 
         if(alignment == null) return;
 
-        int x = ((w - ICON_SIZE) / 2) + 1;
-        int y = ((h - ICON_SIZE) / 2);
+        int x = ((w - ICON_SIZE + 1) / 2);
+        int y = ((h - ICON_SIZE + 1) / 2);
 
         y += BridgingCrosshairTweaks.yShift;
         y += this.debugOverlay.showDebugScreen() ? 15 : 0;
