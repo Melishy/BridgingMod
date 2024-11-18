@@ -1,6 +1,7 @@
-__**Changelog (v2.5.2)**__
+__**Changelog (v2.5.2 for 1.20.3)**__
 
 - Fixed rotating blocks (i.e, logs) only placing vertically
+- Hand should animate properly now when bridging
 
 __**Changelog (v2.5.0)**__
 
