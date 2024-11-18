@@ -1,11 +1,6 @@
-__**Changelog (v2.5.1 for 1.21.3)**__
+__**Changelog (v2.5.2)**__
 
-- Chopped up `bridgingmod:gui/placement_icons` into:
-  - `bridgingmod:gui/indicator/up`
-  - `bridgingmod:gui/indicator/horizontal`
-  - `bridgingmod:gui/indicator/down`
-- Fixed incorrect texture path for bridge-assist config image.
-- 1.21.3 support!
+- Fixed rotating blocks (i.e, logs) only placing vertically
 
 __**Changelog (v2.5.0)**__
 
