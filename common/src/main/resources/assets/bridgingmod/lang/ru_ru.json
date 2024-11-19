@@ -30,7 +30,7 @@
   "config.bridgingmod.option.supportedBridgeAxes": "Мостовая ось",
   "config.bridgingmod.option.supportedBridgeAxes.description.0": "Хотите использовать перемычки только горизонтально, как скальная порода? ",
   "config.bridgingmod.option.supportedBridgeAxesWhenCrouched": "Перекрытие оси при приседании",
-  "config.bridgingmod.option.supportedBridgeAxesWhenCrouched.description.0": "См. \"Мостовая ось\", но это переопределяет ее поведение, когда вы крадетесь.\n",
+  "config.bridgingmod.option.supportedBridgeAxesWhenCrouched.description.0": "См. \"Мостовая ось\", но это переопределяет ее поведение, когда вы крадетесь.",
   "config.bridgingmod.option.supportedBridgeAxesWhenCrouched.description.1": "\"Так же, как обычно\" копирует все значения, установленные для параметра \"Мостовая ось\".",
   "enum.bridgingmod.placement_axis.horizontal": "Только горизонтально",
   "enum.bridgingmod.placement_axis.vertical": "Только вертикальное",
