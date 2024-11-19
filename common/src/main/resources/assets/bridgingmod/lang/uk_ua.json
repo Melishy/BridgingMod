@@ -1,41 +1,85 @@
 {
     "bridgingmod.config.failed_integration.title": "Конфігураційний інтерфейс вимкнено!",
     "bridgingmod.config.failed_integration.description": "Конфіг мода вимкнено на знімках",
-
+    
     "key.categories.bridgingmod": "Bridging Mod",
     "key.bridgingmod.toggle_bridging": "Перемикання мостіння",
-
+    
     "notif.bridgingmod.toggle_bridging": "Переключити мостіння",
     "notif.bridgingmod.action.enabled": "УВІМК.",
     "notif.bridgingmod.action.disabled": "ВИМК.",
-
+    
     "config.bridgingmod.title": "Bridging Mod",
     "config.bridgingmod.category.feature": "Особливості",
+    "config.bridgingmod.category.feature.tooltip": "Налаштування основних компонентів мода",
     "config.bridgingmod.category.vfx": "Візуальне",
+    "config.bridgingmod.category.vfx.tooltip": "Змінити вигляд усіх індикаторів",
+    "config.bridgingmod.category.fixes": "Виправлення",
+    "config.bridgingmod.category.fixes.tooltip": "Дрібні налаштування, які не потребують змін, але можуть покращити роботу мода",
     "config.bridgingmod.category.debug": "Налагодження",
-
+    "config.bridgingmod.category.debug.tooltip": "Функції, корисні для розробки, які також можуть бути корисні вам",
+    "config.bridgingmod.category.other": "Інше",
+    "config.bridgingmod.category.other.tooltip": "Різні налаштування",
+    
     "config.bridgingmod.option.enableBridgingAssist": "Увімкнути містовий асистент",
+    "config.bridgingmod.option.enableBridgingAssist.description.0": "Чи повинне мостіння в стилі Bedrock бути активним? По суті вмикає/вимикає більшість мода.\n",
+    "config.bridgingmod.option.enableBridgingAssist.description.1": "Також прив'язано до клавіші в налаштуваннях керування (за замовчуванням ',')",
+    
     "config.bridgingmod.option.onlyBridgeWhenCrouched": "Використовуйте містовий асистент тільки під час присідання",
-    "config.bridgingmod.option.enableSlabAssist": "Вирівняти плити, укладені за допомогою містового асистента",
-    "config.bridgingmod.option.enableNonSolidReplace": "Заміна нетвердих блоків",
+    "config.bridgingmod.option.onlyBridgeWhenCrouched.description.0": "Якщо увімкнено, мостіння активується тільки коли гравець присів.\n",
+    "config.bridgingmod.option.onlyBridgeWhenCrouched.description.1": "Це схоже на те, як клавіша 'Перемикання мостіння' змінює доступність мостіння.",
+    
     "config.bridgingmod.option.delayPostBridging": "Затримка після зведення мосту",
     "config.bridgingmod.option.delayPostBridging.description.0": "Через скільки тиків ви зможете знову розмістити блок? 4 - ваніль. 3 полегшує зведення мостів.",
+    "config.bridgingmod.option.delayPostBridging.description.1": "3: Легше будувати",
+    "config.bridgingmod.option.delayPostBridging.description.2": "4: Поведінка як у звичайній грі",
+    
     "config.bridgingmod.option.supportedBridgeAxes": "Мостова вісь",
+    "config.bridgingmod.option.supportedBridgeAxes.description.0": "Хочете використовувати мостіння тільки горизонтально, як у Bedrock? Це налаштування обмежує мостіння певними осями.",
     "config.bridgingmod.option.supportedBridgeAxesWhenCrouched": "Мостова вісь при підкраданні",
-
+    "config.bridgingmod.option.supportedBridgeAxesWhenCrouched.description.0": "Див. 'Мостова вісь', але це перевизначає поведінку при підкраданні.\n",
+    "config.bridgingmod.option.supportedBridgeAxesWhenCrouched.description.1": "'Як зазвичай' копіює налаштування з 'Мостова вісь'.",
+    
     "enum.bridgingmod.placement_axis.horizontal": "Тільки горизонтально",
     "enum.bridgingmod.placement_axis.vertical": "Тільки вертикально",
     "enum.bridgingmod.placement_axis.both": "Обидва",
     "enum.bridgingmod.placement_axis.fallback": "Як зазвичай",
-
+    
     "config.bridgingmod.option.showCrosshair": "Показати перехрестя містового асистента",
+    "config.bridgingmod.option.showCrosshair.description.0": "Додає стрілки навколо прицілу коли мостіння активне, показуючи приблизно де буде встановлено блок (Вгору, Горизонтально, Вниз)",
+    
     "config.bridgingmod.option.showOutline": "Показати контур блоку містового асистента",
+    "config.bridgingmod.option.showOutline.description.0": "Показує контур (схожий на контур руйнування блока) коли мостіння активне, підсвічуючи місце, де буде встановлено блок.",
+    
     "config.bridgingmod.option.showOutlineEvenWhenNotBridging": "Показати контур блоку без містового асистента",
-    "config.bridgingmod.option.nonBridgeRespectsCrouchRules": "Показатибез містового асистента коли ввімкнено мостіння",
-    "config.bridgingmod.option.nonBridgeRespectsCrouchRules.description.0": "Увімкнення або вимкнення правил присідання та перекриття впливає на те, чи буде цей контур видимим.",
+    "config.bridgingmod.option.showOutlineEvenWhenNotBridging.description.0": "Показує контур там, де ви збираєтесь розмістити блок без використання мостіння (тобто звичайне розміщення блоків)",
+    
+    "config.bridgingmod.option.nonBridgeRespectsCrouchRules": "Показати без містового асистента коли ввімкнено мостіння",
+    "config.bridgingmod.option.nonBridgeRespectsCrouchRules.description.0": "Залежить від налаштування 'Використовуйте містовий асистент тільки під час присідання'\n",
+    "config.bridgingmod.option.nonBridgeRespectsCrouchRules.description.1": "Якщо увімкнено, контур звичайного розміщення залежить від цього налаштування і видимий тільки коли мостіння доступне.",
+    
     "config.bridgingmod.option.outlineColour": "Колір для контуру блоку містового асистента",
-
+    "config.bridgingmod.option.outlineColour.description.0": "Встановлює колір контуру як для мостіння, так і для звичайного розміщення блоків.\n",
+    "config.bridgingmod.option.outlineColour.description.1": "Рекомендується прозорість 0.4, якщо ви не хочете надто яскравих кольорів.",
+    
+    "config.bridgingmod.option.enableSlabAssist": "Вирівняти плити, укладені за допомогою містового асистента",
+    "config.bridgingmod.option.enableSlabAssist.description.0": "Розумне розміщення плит! Покращує взаємодію плит (і люків) з модом:\n",
+    "config.bridgingmod.option.enableSlabAssist.description.1": "- Вирівнює їх по вашому рівню при горизонтальному мостінні",
+    "config.bridgingmod.option.enableSlabAssist.description.2": "- Об'єднує їх у стопки при вертикальному мостінні",
+    "config.bridgingmod.option.enableSlabAssist.description.3": "- ...та інше?",
+    
+    "config.bridgingmod.option.skipTorchBridging": "Пропускати смолоскипи",
+    "config.bridgingmod.option.skipTorchBridging.description.0": "Запобігає випадковому розміщенню смолоскипів, повністю вимикаючи їх використання при мостінні",
+    
+    "config.bridgingmod.option.enableNonSolidReplace": "Заміна нетвердих блоків",
+    "config.bridgingmod.option.enableNonSolidReplace.description.0": "Дозволяє мостінню заміняти 'замінювані' блоки, такі як висока трава та вода.",
+    
     "config.bridgingmod.option.showDebugHighlight": "Показати контур блоку містового асистента у F3",
+    "config.bridgingmod.option.showDebugHighlight.description.0": "Див. Візуальне->Показати контур блоку містового асистента, але в режимі F3",
+    
     "config.bridgingmod.option.showNonBridgingDebugHighlight": "Показати контур блоку без містового асистента у F3",
-    "config.bridgingmod.option.showDebugTrace": "Показувати слід блоку містового асистента у F3"
+    "config.bridgingmod.option.showNonBridgingDebugHighlight.description.0": "Див. Візуальне->Показати контур блоку без містового асистента, але в режимі F3",
+    
+    "config.bridgingmod.option.showDebugTrace": "Показувати слід блоку містового асистента у F3",
+    "config.bridgingmod.option.showDebugTrace.description.0": "Злегка підсвічує всі позиції блоків, які були перевірені і пропущені при пошуку цілі для мостіння. Досить відволікає!"
 }
