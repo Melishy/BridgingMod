@@ -19,7 +19,7 @@
   "config.bridgingmod.category.other.tooltip": "Разные настройки",
   "config.bridgingmod.option.enableBridgingAssist": "Включить мост",
   "config.bridgingmod.option.enableBridgingAssist.description.0": "Должны ли быть активными мосты, подобные коренной скале? \n",
-  "config.bridgingmod.option.enableBridgingAssist.description.1": "Это также привязано к привязке клавиш в элементах управления (по умолчанию ",")",
+  "config.bridgingmod.option.enableBridgingAssist.description.1": "Это также привязано к привязке клавиш в элементах управления (по умолчанию)",
   "config.bridgingmod.option.onlyBridgeWhenCrouched": "Только мост, приседая",
   "config.bridgingmod.option.onlyBridgeWhenCrouched.description.0": "Если этот параметр включен, мост становится активным только тогда, когда игрок крадется.\n",
   "config.bridgingmod.option.onlyBridgeWhenCrouched.description.1": "Это похоже на сочетание клавиш \"Переключить мост\", изменяющее доступность моста.",
