@@ -1,0 +1,78 @@
+{
+    "bridgingmod.config.failed_integration.title": "Конфигурационный интерфейс отключен!",
+    "bridgingmod.config.failed_integration.description": "Не удалось открыть конфигурацию. Если вы используете снапшот, пожалуйста, не сообщайте об этой ошибке.",
+
+    "key.categories.bridgingmod": "Bridging Mod",
+    "key.bridgingmod.toggle_bridging": "Переключить мостостроение",
+
+    "notif.bridgingmod.toggle_bridging": "Переключено мостостроение",
+    "notif.bridgingmod.action.enabled": "ВКЛ",
+    "notif.bridgingmod.action.disabled": "ВЫКЛ",
+
+    "config.bridgingmod.title": "Bridging Mod",
+    "config.bridgingmod.category.feature": "Функции",
+    "config.bridgingmod.category.feature.tooltip": "Настройка основных компонентов мода",
+    "config.bridgingmod.category.vfx": "Визуальные эффекты",
+    "config.bridgingmod.category.vfx.tooltip": "Изменить внешний вид всех индикаторов",
+    "config.bridgingmod.category.fixes": "Исправления",
+    "config.bridgingmod.category.fixes.tooltip": "Мелкие настройки, которые не требуют изменений, но могут улучшить работу мода",
+    "config.bridgingmod.category.debug": "Отладка",
+    "config.bridgingmod.category.debug.tooltip": "Функции, полезные для разработки, которые также могут быть полезны вам",
+    "config.bridgingmod.category.other": "Прочее",
+    "config.bridgingmod.category.other.tooltip": "Различные настройки",
+
+    "config.bridgingmod.option.enableBridgingAssist": "Включить мостостроение",
+    "config.bridgingmod.option.enableBridgingAssist.description.0": "Должно ли быть активно мостостроение в стиле Bedrock? По сути включает/отключает большую часть мода.\n",
+    "config.bridgingmod.option.enableBridgingAssist.description.1": "Также привязано к клавише в настройках управления (по умолчанию ',')",
+    "config.bridgingmod.option.onlyBridgeWhenCrouched": "Мостостроение только при приседании",
+    "config.bridgingmod.option.onlyBridgeWhenCrouched.description.0": "Если включено, мостостроение активируется только когда игрок присел.\n",
+    "config.bridgingmod.option.onlyBridgeWhenCrouched.description.1": "Это похоже на то, как клавиша 'Переключить мостостроение' меняет доступность мостостроения.",
+
+    "config.bridgingmod.option.delayPostBridging": "Задержка после установки блока",
+    "config.bridgingmod.option.delayPostBridging.description.0": "Сколько тиков должно пройти (20 тиков = 1 секунда) прежде чем вы сможете установить следующий блок? Это влияет на скорость строительства при удержании кнопки размещения блока.\n",
+    "config.bridgingmod.option.delayPostBridging.description.1": "3: Легче строить",
+    "config.bridgingmod.option.delayPostBridging.description.2": "4: Поведение как в обычной игре",
+
+    "config.bridgingmod.option.supportedBridgeAxes": "Оси мостостроения",
+    "config.bridgingmod.option.supportedBridgeAxes.description.0": "Хотите использовать мостостроение только горизонтально, как в Bedrock? Эта настройка ограничивает мостостроение определенными осями.",
+    "config.bridgingmod.option.supportedBridgeAxesWhenCrouched": "Оси мостостроения при приседании",
+    "config.bridgingmod.option.supportedBridgeAxesWhenCrouched.description.0": "См. 'Оси мостостроения', но это переопределяет поведение при приседании.\n",
+    "config.bridgingmod.option.supportedBridgeAxesWhenCrouched.description.1": "'Как обычно' копирует настройки из 'Оси мостостроения'.",
+
+    "enum.bridgingmod.placement_axis.horizontal": "Только горизонтально",
+    "enum.bridgingmod.placement_axis.vertical": "Только вертикально",
+    "enum.bridgingmod.placement_axis.both": "Любая",
+    "enum.bridgingmod.placement_axis.fallback": "Как обычно",
+
+    "config.bridgingmod.option.showCrosshair": "Показывать прицел мостостроения",
+    "config.bridgingmod.option.showCrosshair.description.0": "Добавляет стрелки вокруг прицела когда мостостроение активно, показывая примерно где будет установлен блок (Вверх, Горизонтально, Вниз)",
+    "config.bridgingmod.option.showOutline": "Показывать контур блока мостостроения",
+    "config.bridgingmod.option.showOutline.description.0": "Показывает контур (похожий на контур разрушения блока) когда мостостроение активно, подсвечивая место, где будет установлен блок.",
+    "config.bridgingmod.option.showOutlineEvenWhenNotBridging": "Показывать контур обычного размещения",
+    "config.bridgingmod.option.showOutlineEvenWhenNotBridging.description.0": "Показывает контур там, где вы собираетесь разместить блок без использования мостостроения (т.е. обычное размещение блоков)",
+    "config.bridgingmod.option.nonBridgeRespectsCrouchRules": "Показывать контур обычного размещения при активном мостостроении",
+    "config.bridgingmod.option.nonBridgeRespectsCrouchRules.description.0": "Зависит от настройки 'Мостостроение только при приседании'\n",
+    "config.bridgingmod.option.nonBridgeRespectsCrouchRules.description.1": "Если включено, контур обычного размещения зависит от этой настройки и виден только когда мостостроение доступно.",
+
+    "config.bridgingmod.option.outlineColour": "Цвет контура",
+    "config.bridgingmod.option.outlineColour.description.0": "Устанавливает цвет контура как для мостостроения, так и для обычного размещения блоков.\n",
+    "config.bridgingmod.option.outlineColour.description.1": "Рекомендуется прозрачность 0.4, если вы не хотите слишком ярких цветов.",
+
+    "config.bridgingmod.option.enableSlabAssist": "Выравнивать полублоки",
+    "config.bridgingmod.option.enableSlabAssist.description.0": "Умное размещение полублоков! Улучшает взаимодействие полублоков (и люков) с модом:\n",
+    "config.bridgingmod.option.enableSlabAssist.description.1": "- Выравнивает их по вашему уровню при горизонтальном мостостроении",
+    "config.bridgingmod.option.enableSlabAssist.description.2": "- Объединяет их в стопки при вертикальном мостостроении",
+    "config.bridgingmod.option.enableSlabAssist.description.3": "- ...и другое?",
+
+    "config.bridgingmod.option.skipTorchBridging": "Пропускать факелы",
+    "config.bridgingmod.option.skipTorchBridging.description.0": "Предотвращает случайное размещение факелов, полностью отключая их использование при мостостроении",
+    "config.bridgingmod.option.enableNonSolidReplace": "Замена нетвёрдых блоков",
+    "config.bridgingmod.option.enableNonSolidReplace.description.0": "Позволяет мостостроению заменять 'заменяемые' блоки, такие как высокая трава и вода.",
+
+    "config.bridgingmod.option.showDebugHighlight": "Показывать контур мостостроения в F3",
+    "config.bridgingmod.option.showDebugHighlight.description.0": "См. Визуальные->Показывать контур блока мостостроения, но в режиме F3",
+    "config.bridgingmod.option.showNonBridgingDebugHighlight": "Показывать контур обычного размещения в F3",
+    "config.bridgingmod.option.showNonBridgingDebugHighlight.description.0": "См. Визуальные->Показывать контур обычного размещения, но в режиме F3",
+    "config.bridgingmod.option.showDebugTrace": "Показывать след блоков в F3",
+    "config.bridgingmod.option.showDebugTrace.description.0": "Слегка подсвечивает все позиции блоков, которые были проверены и пропущены при поиске цели для мостостроения. Довольно отвлекает!"
+}
