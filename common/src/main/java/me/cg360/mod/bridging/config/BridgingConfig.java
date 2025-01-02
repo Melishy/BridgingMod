@@ -1,5 +1,6 @@
 package me.cg360.mod.bridging.config;
 
+import com.google.gson.annotations.SerializedName;
 import dev.isxander.yacl3.config.v2.api.ConfigClassHandler;
 import dev.isxander.yacl3.config.v2.api.SerialEntry;
 import dev.isxander.yacl3.config.v2.api.serializer.GsonConfigSerializerBuilder;
@@ -28,11 +29,13 @@ public class BridgingConfig extends DefaultValueTracker {
 
 
     @SerialEntry @HideInConfigUI
-    private int version = 3;
+    private int version = 4;
 
+    @SerialEntry @HideInConfigUI // gson. why is there json5 support without comments.
+    private String __comment_enableBridgingAssist = "a.k.a. 'Reacharound Placement' in keybinds. The Quark thing.";
     @Category("feature") @SerialEntry
     @IncludeAnimatedImage("textures/gui/config/bridging.webp")
-    @IncludeExtraDescription
+    @IncludeExtraDescription(extraParagraphs = 2)
     private boolean enableBridgingAssist = true;
     @Category("feature") @SerialEntry
     @IncludeExtraDescription

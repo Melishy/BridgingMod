@@ -3,9 +3,9 @@
     "bridgingmod.config.failed_integration.description": "Failed to open config UI. If you're in a snapshot, please do not report this as a bug.",
 
     "key.categories.bridgingmod": "Bridging Mod",
-    "key.bridgingmod.toggle_bridging": "Toggle Bridging",
+    "key.bridgingmod.toggle_bridging": "Toggle Reacharound Placement",
 
-    "notif.bridgingmod.toggle_bridging": "Toggled Bridging",
+    "notif.bridgingmod.toggle_bridging": "Toggled Reacharound Placement",
     "notif.bridgingmod.action.enabled": "ON",
     "notif.bridgingmod.action.disabled": "OFF",
 
@@ -24,6 +24,7 @@
     "config.bridgingmod.option.enableBridgingAssist": "Enable Bridging",
     "config.bridgingmod.option.enableBridgingAssist.description.0": "Should bedrock-like bridging be active? Basically enables/disables most of the mod.\n",
     "config.bridgingmod.option.enableBridgingAssist.description.1": "This is also bound to a keybind in Controls (defaults to ',')",
+    "config.bridgingmod.option.enableBridgingAssist.description.2": "^ a.k.a. Reacharound Placement, similar to Quark",
     "config.bridgingmod.option.onlyBridgeWhenCrouched": "Only Bridge While Crouching",
     "config.bridgingmod.option.onlyBridgeWhenCrouched.description.0": "If this is enabled, Bridging only becomes active while the player is sneaking.\n",
     "config.bridgingmod.option.onlyBridgeWhenCrouched.description.1": "This is similar to the 'Toggle Bridging' keybind changing Bridging's availability.",
