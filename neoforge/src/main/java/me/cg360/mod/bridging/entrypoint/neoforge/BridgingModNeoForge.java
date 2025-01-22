@@ -2,6 +2,7 @@ package me.cg360.mod.bridging.entrypoint.neoforge;
 
 import me.cg360.mod.bridging.BridgingKeyMappings;
 import me.cg360.mod.bridging.BridgingMod;
+import me.cg360.mod.bridging.ModIds;
 import me.cg360.mod.bridging.compat.impl.BankStorageCompat;
 import me.cg360.mod.bridging.compat.impl.DankStorageCompat;
 import me.cg360.mod.bridging.compat.impl.DynamicCrosshairCompat;
@@ -28,13 +29,15 @@ public class BridgingModNeoForge {
 
 
     public void init(FMLClientSetupEvent event) {
-        BridgingMod.init();
 
-        if(BridgingMod.isConfigSuccessfullyInitialized())
-            ModLoadingContext.get().registerExtensionPoint(
-                    IConfigScreenFactory.class,
-                    () -> (client, parent) -> BridgingConfigUI.buildConfig().generateScreen(parent)
-            );
+        if(ModList.get().isLoaded(ModIds.FREE_LOOK))
+            BridgingMod.noteIncompatibleMod(ModIds.FREE_LOOK); // this just enables extra compat code. It works.
+
+        BridgingMod.init(); // loads config
+        ModLoadingContext.get().registerExtensionPoint(
+                IConfigScreenFactory.class,
+                () -> (client, parent) -> BridgingConfigUI.buildConfig().generateScreen(parent)
+        );
 
         if(ModList.get().isLoaded(DYNAMIC_CROSSHAIR_MOD))
             InterModComms.sendTo(DYNAMIC_CROSSHAIR_MOD, "register_api", DynamicCrosshairCompat::new);
