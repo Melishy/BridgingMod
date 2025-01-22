@@ -1,17 +1,16 @@
 package me.cg360.mod.bridging.mixin;
 
-import com.mojang.blaze3d.resource.GraphicsResourceAllocator;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import me.cg360.mod.bridging.BridgingMod;
+import me.cg360.mod.bridging.config.selector.SourcePerspective;
+import me.cg360.mod.bridging.raytrace.Perspective;
 import me.cg360.mod.bridging.util.GameSupport;
 import me.cg360.mod.bridging.util.Render;
 import net.minecraft.client.Camera;
-import net.minecraft.client.DeltaTracker;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.client.renderer.*;
-import org.joml.Matrix4f;
+import net.minecraft.world.entity.player.Player;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -55,13 +54,28 @@ public abstract class OutlineRendererMixin {
         // Creating a fresh pose stack should be fine - the main pose stack is meant to be
         // empty before rendering the vanilla outline anyway.
         //PoseStack poseStack = new PoseStack();
+        // what.
 
+
+        SourcePerspective perspectiveLock = BridgingMod.getCompatibleSourcePerspective();
+        Player player = Minecraft.getInstance().player;
+
+        if(player == null)
+            perspectiveLock = SourcePerspective.COPY_TOGGLE_PERSPECTIVE;
+
+        Perspective view = switch (perspectiveLock) {
+            case COPY_TOGGLE_PERSPECTIVE, LET_BRIDGING_MOD_DECIDE ->
+                    Perspective.fromCamera(Minecraft.getInstance().gameRenderer.getMainCamera());
+
+            case ALWAYS_EYELINE ->
+                    Perspective.fromEntity(player);
+        };
 
         if(isInDebugMenu && BridgingMod.getConfig().shouldShowDebugTrace())
-            Render.blocksInViewPath(poseStack, vertices, camera);
+            Render.blocksInViewPath(poseStack, vertices, view);
 
-        if(isOutlineEnabled) Render.currentBridgingOutline(poseStack, camera, vertices);
-        if(isNonBridgeOutlineEnabled) Render.currentNonBridgingOutline(poseStack, camera, vertices);
+        if(isOutlineEnabled) Render.currentBridgingOutline(poseStack, view, vertices);
+        if(isNonBridgeOutlineEnabled) Render.currentNonBridgingOutline(poseStack, view, vertices);
 
         this.checkPoseStack(poseStack);
     }

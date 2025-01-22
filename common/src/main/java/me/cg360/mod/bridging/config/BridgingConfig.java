@@ -5,9 +5,9 @@ import dev.isxander.yacl3.config.v2.api.SerialEntry;
 import dev.isxander.yacl3.config.v2.api.serializer.GsonConfigSerializerBuilder;
 import me.cg360.mod.bridging.BridgingMod;
 import me.cg360.mod.bridging.config.helper.*;
+import me.cg360.mod.bridging.config.selector.SourcePerspective;
 import me.cg360.mod.bridging.config.selector.PlacementAxisMode;
 import me.cg360.mod.bridging.config.selector.PlacementAxisModeOverride;
-import me.cg360.mod.bridging.config.selector.SourcePerspective;
 
 import java.awt.*;
 

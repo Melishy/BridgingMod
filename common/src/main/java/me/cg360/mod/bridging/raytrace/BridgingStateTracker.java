@@ -31,6 +31,8 @@ public class BridgingStateTracker {
         if(player == null)
             return null;
 
+        // this miss check kinda falls apart when freelook like mods are installed.
+        // todo: make a hitresult cast from the camera, through the player?
         HitResult hit = Minecraft.getInstance().hitResult;
 
         // If there's a valid block to build on in view & range, do not calculate reach-around.

@@ -1,20 +1,17 @@
 package me.cg360.mod.bridging.raytrace;
 
+import com.mojang.logging.LogUtils;
 import me.cg360.mod.bridging.BridgingMod;
 import me.cg360.mod.bridging.config.selector.SourcePerspective;
 import me.cg360.mod.bridging.util.GameSupport;
 import me.cg360.mod.bridging.util.Path;
-import me.cg360.mod.bridging.util.PlacementAxisMode;
-import net.minecraft.client.Camera;
+import me.cg360.mod.bridging.config.selector.PlacementAxisMode;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.util.Tuple;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.LiquidBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.Vec3;
@@ -40,8 +37,10 @@ public class PathTraversalHandler {
         SourcePerspective perspectiveLock = BridgingMod.getCompatibleSourcePerspective();
 
         Perspective perspective = switch (perspectiveLock) {
-            case COPY_TOGGLE_PERSPECTIVE, LET_BRIDGING_MOD_DECIDE ->
-                    Perspective.fromCamera(Minecraft.getInstance().gameRenderer.getMainCamera());
+            case COPY_TOGGLE_PERSPECTIVE, LET_BRIDGING_MOD_DECIDE -> {
+                LogUtils.getLogger().info("Perspective: {}", perspectiveLock);
+                    yield Perspective.fromCamera(Minecraft.getInstance().gameRenderer.getMainCamera());
+            }
 
             case ALWAYS_EYELINE ->
                     Perspective.fromEntity(player);

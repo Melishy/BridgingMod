@@ -5,6 +5,7 @@ import com.mojang.blaze3d.vertex.VertexConsumer;
 import me.cg360.mod.bridging.BridgingMod;
 import me.cg360.mod.bridging.raytrace.BridgingStateTracker;
 import me.cg360.mod.bridging.raytrace.PathTraversalHandler;
+import me.cg360.mod.bridging.raytrace.Perspective;
 import net.minecraft.client.Camera;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
@@ -24,36 +25,36 @@ import java.util.List;
 
 public class Render {
 
-    public static void blocksInViewPath(PoseStack poseStack, VertexConsumer vertexConsumer, Camera camera) {
+    public static void blocksInViewPath(PoseStack poseStack, VertexConsumer vertexConsumer, Perspective view) {
         LocalPlayer player = Minecraft.getInstance().player;
 
         if(player == null)
             return;
 
-        List<BlockPos> path = PathTraversalHandler.getViewBlockPath(player, camera);
+        List<BlockPos> path = PathTraversalHandler.getViewBlockPath(player, view);
 
         if(path.isEmpty())
             return;
 
         for(BlockPos pos: path)
-            Render.cubeTrace(poseStack, vertexConsumer, camera, pos);
+            Render.cubeTrace(poseStack, vertexConsumer, view, pos);
     }
 
-    public static void cubeHighlight(PoseStack poseStack, VertexConsumer vertices, Camera camera, BlockPos pos) {
-        Render.cubeOutline(poseStack, vertices, camera, pos, 0x260099FF);
+    public static void cubeHighlight(PoseStack poseStack, VertexConsumer vertices, Perspective view, BlockPos pos) {
+        Render.cubeOutline(poseStack, vertices, view, pos, 0x260099FF);
     }
 
-    public static void cubeTrace(PoseStack poseStack, VertexConsumer vertices, Camera camera, BlockPos pos) {
-        Render.cubeOutline(poseStack, vertices, camera, pos, 0x16333333);
+    public static void cubeTrace(PoseStack poseStack, VertexConsumer vertices, Perspective view, BlockPos pos) {
+        Render.cubeOutline(poseStack, vertices, view, pos, 0x16333333);
     }
 
-    public static void cubeTermination(PoseStack poseStack, VertexConsumer vertices, Camera camera, BlockPos pos) {
-        Render.cubeOutline(poseStack, vertices, camera, pos, 0x7FFF0000);
+    public static void cubeTermination(PoseStack poseStack, VertexConsumer vertices, Perspective view, BlockPos pos) {
+        Render.cubeOutline(poseStack, vertices, view, pos, 0x7FFF0000);
     }
 
-    public static void cubeOutline(PoseStack poseStack, VertexConsumer consumer, Camera camera, BlockPos pos, int argbColor) {
+    public static void cubeOutline(PoseStack poseStack, VertexConsumer consumer, Perspective view, BlockPos pos, int argbColor) {
         PoseStack.Pose pose = poseStack.last();
-        Vec3 camPos = camera.getPosition();
+        Vec3 camPos = view.getPosition();
 
         double x = pos.getX() - camPos.x();
         double y = pos.getY() - camPos.y();
@@ -76,7 +77,7 @@ public class Render {
     }
 
 
-    public static void currentNonBridgingOutline(PoseStack poseStack, Camera camera, VertexConsumer vertices) {
+    public static void currentNonBridgingOutline(PoseStack poseStack, Perspective view, VertexConsumer vertices) {
         HitResult hit = Minecraft.getInstance().hitResult;
 
         // Skip non-placement hits.
@@ -103,10 +104,10 @@ public class Render {
             return;
 
         int outlineColour = BridgingMod.getConfig().getOutlineColour().getRGB();
-        Render.cubeOutline(poseStack, vertices, camera, placeTarget, outlineColour);
+        Render.cubeOutline(poseStack, vertices, view, placeTarget, outlineColour);
     }
 
-    public static void currentBridgingOutline(PoseStack poseStack, Camera camera, VertexConsumer vertices) {
+    public static void currentBridgingOutline(PoseStack poseStack, Perspective view, VertexConsumer vertices) {
         Tuple<BlockPos, Direction> lastTarget = BridgingStateTracker.getLastTickTarget();
 
         if(lastTarget == null)
@@ -114,7 +115,7 @@ public class Render {
 
         int outlineColour = BridgingMod.getConfig().getOutlineColour().getRGB();
 
-        Render.cubeOutline(poseStack, vertices, camera, lastTarget.getA(), outlineColour);
+        Render.cubeOutline(poseStack, vertices, view, lastTarget.getA(), outlineColour);
     }
 
 }
