@@ -168,6 +168,7 @@ public class BridgingConfigUI {
 
                 if(discreteRangeAnno.length > 0) {
                     ContinuousRange range = discreteRangeAnno[0];
+
                     Optional<Option<Float>> optOption = createOption(
                             field,
                             option -> FloatSliderControllerBuilder.create(option)

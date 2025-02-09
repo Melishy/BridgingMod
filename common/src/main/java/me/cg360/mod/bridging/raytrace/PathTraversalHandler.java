@@ -1,6 +1,5 @@
 package me.cg360.mod.bridging.raytrace;
 
-import com.mojang.logging.LogUtils;
 import me.cg360.mod.bridging.BridgingMod;
 import me.cg360.mod.bridging.config.selector.SourcePerspective;
 import me.cg360.mod.bridging.util.GameSupport;
@@ -21,7 +20,6 @@ import java.util.*;
 
 public class PathTraversalHandler {
 
-    private static final float MIN_DISTANCE = 1f;
     private static final double DIRECTION_SIMILARITY_THRESHOLD = 0.1d;
 
     /**
@@ -103,8 +101,14 @@ public class PathTraversalHandler {
         Vec3 worldSpaceCameraOrigin = view.getPosition();
         double distance = worldSpaceViewEnd.distanceTo(worldSpaceCameraOrigin);
 
+        // parameter instead?
+        float minDistanceHorizontal = BridgingMod.getConfig().getMinimumBridgeReachHorizontal();
+        float minDistanceVertical = BridgingMod.getConfig().getMinimumBridgeReachVertical();
+
         Vec3 viewDirection = new Vec3(view.getLookVector());
-        Vec3 nearVec = viewDirection.scale(MIN_DISTANCE);
+
+        // I'm fairly sure this is the wrong maths.
+        Vec3 nearVec = viewDirection.multiply(minDistanceHorizontal, minDistanceVertical, minDistanceHorizontal);
         Vec3 farVec = viewDirection.scale(distance);
 
         BlockPos startPos = BlockPos.containing(worldSpaceCameraOrigin.add(nearVec));

@@ -38,6 +38,13 @@ public class BridgingConfig extends DefaultValueTracker {
     private boolean enableBridgingAssist = true;
     @Category("feature") @SerialEntry
     @IncludeExtraDescription
+    @ContinuousRange(min = 0.5f, max = 10, sliderStep = 0.2f)   // Should this just be a box?
+    private float minimumBridgeReachHorizontal = 2.2f;
+    @IncludeExtraDescription
+    @ContinuousRange(min = 0.5f, max = 10, sliderStep = 0.2f)   // Should this just be a box?
+    private float minimumBridgeReachVertical = 1.0f;
+    @Category("feature") @SerialEntry
+    @IncludeExtraDescription
     private boolean onlyBridgeWhenCrouched = false;
     @Category("feature") @SerialEntry
     private PlacementAxisMode supportedBridgeAxes = PlacementAxisMode.BOTH;
@@ -89,7 +96,6 @@ public class BridgingConfig extends DefaultValueTracker {
     private SourcePerspective perspectiveLock = SourcePerspective.LET_BRIDGING_MOD_DECIDE;
 
 
-
     @Category("debug") @SerialEntry
     private boolean showDebugHighlight = true;
     @Category("debug") @SerialEntry
@@ -102,6 +108,14 @@ public class BridgingConfig extends DefaultValueTracker {
 
     public boolean isBridgingEnabled() {
         return this.enableBridgingAssist;
+    }
+
+    public float getMinimumBridgeReachHorizontal() {
+        return this.minimumBridgeReachHorizontal;
+    }
+
+    public float getMinimumBridgeReachVertical() {
+        return this.minimumBridgeReachVertical;
     }
 
     public float getBridgingSnapStrength() {
