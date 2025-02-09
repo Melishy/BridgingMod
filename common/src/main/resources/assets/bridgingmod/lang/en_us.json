@@ -47,6 +47,11 @@
     "enum.bridgingmod.source_perspective.always_eyeline": "Follow Head Only",
     "enum.bridgingmod.source_perspective.let_bridging_mod_decide": "Let Mod Decide",
 
+    "enum.bridgingmod.bridging_adjacency.disabled": "Strict",
+    "enum.bridgingmod.bridging_adjacency.faces": "Faces Only",
+    "enum.bridgingmod.bridging_adjacency.edges": "Faces + Edges",
+    "enum.bridgingmod.bridging_adjacency.corners": "Faces + Edges + Corners",
+
     "config.bridgingmod.option.showCrosshair": "Show Bridging Crosshair",
     "config.bridgingmod.option.showCrosshair.description.0": "Adds arrows around your crosshair when bridging is active, indicating roughly where your block will be bridged off of (Up, Horizontal, Down)",
     "config.bridgingmod.option.showOutline": "Show Bridging Block Outline",
@@ -72,6 +77,19 @@
     "config.bridgingmod.option.perspectiveLock": "Perspective Lock",
     "config.bridgingmod.option.perspectiveLock.description.0": "How should placement positions be calculated? Should it copy your current perspective (i.e, first & third person. F5), or should it always use the player head's view line?\n",
     "config.bridgingmod.option.perspectiveLock.description.1": "If you're using a 'Free Look' or 'Better Third Person' and you don't like the default behaviour, try changing this.",
+    "config.bridgingmod.option.bridgingSnapStrength": "Bridging Snap Strength",
+    "config.bridgingmod.option.bridgingSnapStrength.description.0": "⚠ Experimental! This feature is very un-tested and works weird on close-up edges.\n",
+    "config.bridgingmod.option.bridgingSnapStrength.description.1": "Resizes the hitbox used when bridging, smaller values being less sensitive.\n",
+    "config.bridgingmod.option.bridgingSnapStrength.description.2": "1.0 = Standard. Strong snapping",
+    "config.bridgingmod.option.bridgingSnapStrength.description.3": "0.8 = Sweet Spot. Weaker snapping, but with a bit of support.",
+    "config.bridgingmod.option.bridgingSnapStrength.description.4": "0.0 = Old. Strict Snapping",
+    "config.bridgingmod.option.bridgingAdjacency": "Bridging Adjacency",
+    "config.bridgingmod.option.bridgingAdjacency.description.0": "⚠ Experimental!\n",
+    "config.bridgingmod.option.bridgingAdjacency.description.1": "Adjusts snapping behaviour. Finds blocks along the view path that get missed by the usual target finder.\n",
+    "config.bridgingmod.option.bridgingAdjacency.description.2": "Strict = Closest match to the view line only.",
+    "config.bridgingmod.option.bridgingAdjacency.description.3": "Faces = Include blocks sharing a face with the closest match",
+    "config.bridgingmod.option.bridgingAdjacency.description.4": "... and so on.",
+
 
     "config.bridgingmod.option.showDebugHighlight": "Show Bridging Block Outline In F3",
     "config.bridgingmod.option.showDebugHighlight.description.0": "See Visual->Show Bridging Block Outline, but with F3",

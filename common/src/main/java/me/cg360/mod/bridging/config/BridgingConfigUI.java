@@ -143,10 +143,10 @@ public class BridgingConfigUI {
             }
 
             if(Integer.class.isAssignableFrom(type)) {
-                DiscreteRange[] rangeAnnotations = field.getDeclaredAnnotationsByType(DiscreteRange.class);
+                DiscreteRange[] discreteRangeAnno = field.getDeclaredAnnotationsByType(DiscreteRange.class);
 
-                if(rangeAnnotations.length > 0) {
-                    DiscreteRange range = rangeAnnotations[0];
+                if(discreteRangeAnno.length > 0) {
+                    DiscreteRange range = discreteRangeAnno[0];
                     Optional<Option<Integer>> optOption = createOption(
                             field,
                             option -> IntegerSliderControllerBuilder.create(option)
@@ -159,6 +159,27 @@ public class BridgingConfigUI {
                 }
 
                 Optional<Option<Integer>> optOption = createOption(field, IntegerFieldControllerBuilder::create);
+                optOption.ifPresent(category::option);
+                continue;
+            }
+
+            if(Float.class.isAssignableFrom(type)) {
+                ContinuousRange[] discreteRangeAnno = field.getDeclaredAnnotationsByType(ContinuousRange.class);
+
+                if(discreteRangeAnno.length > 0) {
+                    ContinuousRange range = discreteRangeAnno[0];
+                    Optional<Option<Float>> optOption = createOption(
+                            field,
+                            option -> FloatSliderControllerBuilder.create(option)
+                                    .range(range.min(), range.max())
+                                    .step(range.sliderStep())
+                    );
+
+                    optOption.ifPresent(category::option);
+                    continue;
+                }
+
+                Optional<Option<Float>> optOption = createOption(field, FloatFieldControllerBuilder::create);
                 optOption.ifPresent(category::option);
                 continue;
             }

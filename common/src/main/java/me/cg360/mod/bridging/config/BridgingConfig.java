@@ -5,6 +5,7 @@ import dev.isxander.yacl3.config.v2.api.SerialEntry;
 import dev.isxander.yacl3.config.v2.api.serializer.GsonConfigSerializerBuilder;
 import me.cg360.mod.bridging.BridgingMod;
 import me.cg360.mod.bridging.config.helper.*;
+import me.cg360.mod.bridging.config.selector.BridgingAdjacency;
 import me.cg360.mod.bridging.config.selector.SourcePerspective;
 import me.cg360.mod.bridging.config.selector.PlacementAxisMode;
 import me.cg360.mod.bridging.config.selector.PlacementAxisModeOverride;
@@ -77,8 +78,16 @@ public class BridgingConfig extends DefaultValueTracker {
     @Category("fixes") @SerialEntry
     private boolean enableNonSolidReplace = true;
     @Category("fixes") @SerialEntry
+    @ContinuousRange(min = 0.0f, max = 1.0f, sliderStep = 0.05f)
+    @IncludeExtraDescription(extraParagraphs = 4)
+    private float bridgingSnapStrength = 1.0f;
+    @Category("fixes") @SerialEntry
+    @IncludeExtraDescription(extraParagraphs = 4)
+    private BridgingAdjacency bridgingAdjacency = BridgingAdjacency.CORNERS;
+    @Category("fixes") @SerialEntry
     @IncludeExtraDescription
     private SourcePerspective perspectiveLock = SourcePerspective.LET_BRIDGING_MOD_DECIDE;
+
 
 
     @Category("debug") @SerialEntry
@@ -93,6 +102,14 @@ public class BridgingConfig extends DefaultValueTracker {
 
     public boolean isBridgingEnabled() {
         return this.enableBridgingAssist;
+    }
+
+    public float getBridgingSnapStrength() {
+        return this.bridgingSnapStrength;
+    }
+
+    public BridgingAdjacency getBridgingAdjacency() {
+        return this.bridgingAdjacency;
     }
 
     public boolean shouldOnlyBridgeWhenCrouched() {

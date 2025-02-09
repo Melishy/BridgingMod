@@ -1,5 +1,7 @@
 package me.cg360.mod.bridging.util;
 
+import me.cg360.mod.bridging.BridgingMod;
+import me.cg360.mod.bridging.config.selector.BridgingAdjacency;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.phys.Vec3;
 
@@ -10,7 +12,7 @@ import java.util.List;
 public class Path {
 
     public static final double NEAR_ZERO = 0.01D;
-    public static final Vec3 CUBE_EXTENT = new Vec3(0.5f, 0.5f, 0.5f);
+    public static final Vec3 CUBE_EXTENT = new Vec3(0.5f, 0.5f, 0.5f); // 60% collision
 
     public static List<BlockPos> calculateBresenhamVoxels(BlockPos startPos, BlockPos endPos) {
         List<BlockPos> points = new ArrayList<>();
@@ -28,6 +30,10 @@ public class Path {
 
         Vec3 workingVec = new Vec3(startPos.getX(), startPos.getY(), startPos.getZ());
         Vec3 targetVec = new Vec3(endPos.getX(), endPos.getY(), endPos.getZ());
+
+        // TODO: Pass these as params. Keep the mathsy methods config free.
+        BridgingAdjacency adjacencySupported = BridgingMod.getConfig().getBridgingAdjacency();
+        float extentMult = BridgingMod.getConfig().getBridgingSnapStrength();
 
         // X-axis
         if (dx >= dy && dx >= dz) {
@@ -51,9 +57,12 @@ public class Path {
                 point2 += 2 * dz;
 
                 BlockPos newPoint = BlockPos.containing(workingVec);
-                List<BlockPos> lostPoints = calculateMissedPoints(points, newPoint, startPos, endPos);
 
-                points.addAll(lostPoints);
+                if(adjacencySupported != BridgingAdjacency.DISABLED) {
+                    List<BlockPos> lostPoints = calculateMissedPoints(points, newPoint, startPos, endPos, extentMult, adjacencySupported);
+                    points.addAll(lostPoints);
+                }
+
                 points.add(newPoint);
             }
 
@@ -82,9 +91,12 @@ public class Path {
                 point2 += 2 * dz;
 
                 BlockPos newPoint = BlockPos.containing(workingVec);
-                List<BlockPos> lostPoints = calculateMissedPoints(points, newPoint, startPos, endPos);
 
-                points.addAll(lostPoints);
+                if(adjacencySupported != BridgingAdjacency.DISABLED) {
+                    List<BlockPos> lostPoints = calculateMissedPoints(points, newPoint, startPos, endPos, extentMult, adjacencySupported);
+                    points.addAll(lostPoints);
+                }
+
                 points.add(newPoint);
             }
 
@@ -112,9 +124,12 @@ public class Path {
             point2 += 2 * dx;
 
             BlockPos newPoint = BlockPos.containing(workingVec);
-            List<BlockPos> lostPoints = calculateMissedPoints(points, newPoint, startPos, endPos);
 
-            points.addAll(lostPoints);
+            if(adjacencySupported != BridgingAdjacency.DISABLED) {
+                List<BlockPos> lostPoints = calculateMissedPoints(points, newPoint, startPos, endPos, extentMult, adjacencySupported);
+                points.addAll(lostPoints);
+            }
+
             points.add(newPoint);
         }
 
@@ -126,8 +141,8 @@ public class Path {
      * Calculates any blocks missed by a pass of Bresenham's algorithm, under the condition
      * that two block positions provided are touching.
      */
-    private static List<BlockPos> calculateMissedPoints(List<BlockPos> points, BlockPos newPoint, BlockPos lineStart, BlockPos lineEnd) {
-        if(points.size() == 0) return List.of();
+    private static List<BlockPos> calculateMissedPoints(List<BlockPos> points, BlockPos newPoint, BlockPos lineStart, BlockPos lineEnd, float extentMult, BridgingAdjacency maxAdjacency) {
+        if(points.isEmpty()) return List.of();
 
         BlockPos lastPoint = points.get(points.size() - 1);
         BlockPos pointDelta = newPoint.subtract(lastPoint);
@@ -190,6 +205,7 @@ public class Path {
         // collision detection from -> https://3dkingdoms.com/weekly/weekly.php?a=21
         // retrofitted for the box checks
 
+        final Vec3 newExtent = CUBE_EXTENT.scale(extentMult);
 
         return reviewPositions.stream()
                 .filter(pos -> {
@@ -200,14 +216,14 @@ public class Path {
                     Vec3 line = lineStartD.subtract(lineMid);
                     Vec3 lineExt = new Vec3(Math.abs(line.x), Math.abs(line.y), Math.abs(line.z));
 
-                    if (Math.abs( lineMid.x ) > CUBE_EXTENT.x + lineExt.x) return false;
-                    if (Math.abs( lineMid.y ) > CUBE_EXTENT.y + lineExt.y) return false;
-                    if (Math.abs( lineMid.z ) > CUBE_EXTENT.z + lineExt.z) return false;
+                    if (Math.abs( lineMid.x ) > newExtent.x + lineExt.x) return false;
+                    if (Math.abs( lineMid.y ) > newExtent.y + lineExt.y) return false;
+                    if (Math.abs( lineMid.z ) > newExtent.z + lineExt.z) return false;
 
                     // Crossproducts of line and each axis
-                    if (Math.abs( lineMid.y * line.z - lineMid.z * line.y) > (CUBE_EXTENT.y * lineExt.z + CUBE_EXTENT.z * lineExt.y) ) return false;
-                    if (Math.abs( lineMid.x * line.z - lineMid.z * line.x) > (CUBE_EXTENT.x * lineExt.z + CUBE_EXTENT.z * lineExt.x) ) return false;
-                    if (Math.abs( lineMid.x * line.y - lineMid.y * line.x) > (CUBE_EXTENT.x * lineExt.y + CUBE_EXTENT.y * lineExt.x) ) return false;
+                    if (Math.abs( lineMid.y * line.z - lineMid.z * line.y) > (newExtent.y * lineExt.z + newExtent.z * lineExt.y) ) return false;
+                    if (Math.abs( lineMid.x * line.z - lineMid.z * line.x) > (newExtent.x * lineExt.z + newExtent.z * lineExt.x) ) return false;
+                    if (Math.abs( lineMid.x * line.y - lineMid.y * line.x) > (newExtent.x * lineExt.y + newExtent.y * lineExt.x) ) return false;
 
                     // No separating axis, the line intersects
 
