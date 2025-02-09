@@ -12,4 +12,6 @@ public @interface DiscreteRange {
     int min();
     int max();
 
+    String formatTranslationKey() default "";
+
 }

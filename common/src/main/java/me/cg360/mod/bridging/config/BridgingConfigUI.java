@@ -11,11 +11,14 @@ import net.minecraft.resources.ResourceLocation;
 import java.awt.*;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
+import java.text.DecimalFormat;
 import java.util.*;
 import java.util.List;
 import java.util.function.Function;
 
 public class BridgingConfigUI {
+
+    public static DecimalFormat FLOAT_FORMAT = new DecimalFormat("#.##");
 
     public static String DEFAULT_CATEGORY_NAME = "other".trim().toLowerCase(); // enforce lowercase.
 
@@ -147,11 +150,17 @@ public class BridgingConfigUI {
 
                 if(discreteRangeAnno.length > 0) {
                     DiscreteRange range = discreteRangeAnno[0];
+
+                    ValueFormatter<Integer> valFormatter = range.formatTranslationKey().isEmpty()
+                            ? val -> Component.literal(val.toString())
+                            : val -> Component.translatable(range.formatTranslationKey(), val.toString());
+
                     Optional<Option<Integer>> optOption = createOption(
                             field,
                             option -> IntegerSliderControllerBuilder.create(option)
                                         .range(range.min(), range.max())
                                         .step(1)
+                                        .formatValue(valFormatter)
                     );
 
                     optOption.ifPresent(category::option);
@@ -169,11 +178,16 @@ public class BridgingConfigUI {
                 if(discreteRangeAnno.length > 0) {
                     ContinuousRange range = discreteRangeAnno[0];
 
+                    ValueFormatter<Float> valFormatter = range.formatTranslationKey().isEmpty()
+                            ? val -> Component.literal(FLOAT_FORMAT.format(val))
+                            : val -> Component.translatable(range.formatTranslationKey(), FLOAT_FORMAT.format(val));
+
                     Optional<Option<Float>> optOption = createOption(
                             field,
                             option -> FloatSliderControllerBuilder.create(option)
                                     .range(range.min(), range.max())
                                     .step(range.sliderStep())
+                                    .formatValue(valFormatter)
                     );
 
                     optOption.ifPresent(category::option);

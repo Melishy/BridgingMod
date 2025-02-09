@@ -28,7 +28,7 @@ public class BridgingConfig extends DefaultValueTracker {
 
 
     @SerialEntry @HideInConfigUI
-    private int version = 5;
+    private int version = 6;
 
     @SerialEntry @HideInConfigUI // gson. why is there json5 support without comments.
     private String __comment_enableBridgingAssist = "a.k.a. 'Reacharound Placement' in keybinds. The Quark thing.";
@@ -38,10 +38,11 @@ public class BridgingConfig extends DefaultValueTracker {
     private boolean enableBridgingAssist = true;
     @Category("feature") @SerialEntry
     @IncludeExtraDescription
-    @ContinuousRange(min = 0.5f, max = 10, sliderStep = 0.2f)   // Should this just be a box?
+    @ContinuousRange(min = 0.5f, max = 10, sliderStep = 0.1f, formatTranslationKey = "config.bridgingmod.value.distance")   // Should this just be a box?
     private float minimumBridgeReachHorizontal = 2.2f;
+    @Category("feature") @SerialEntry
     @IncludeExtraDescription
-    @ContinuousRange(min = 0.5f, max = 10, sliderStep = 0.2f)   // Should this just be a box?
+    @ContinuousRange(min = 0.5f, max = 10, sliderStep = 0.1f, formatTranslationKey = "config.bridgingmod.value.distance")   // Should this just be a box?
     private float minimumBridgeReachVertical = 1.0f;
     @Category("feature") @SerialEntry
     @IncludeExtraDescription
@@ -52,7 +53,7 @@ public class BridgingConfig extends DefaultValueTracker {
     private PlacementAxisModeOverride supportedBridgeAxesWhenCrouched = PlacementAxisModeOverride.FALLBACK;
     @Category("feature") @SerialEntry
     @IncludeExtraDescription(extraParagraphs = 2)
-    @DiscreteRange(min = 0, max = 20)
+    @DiscreteRange(min = 0, max = 20, formatTranslationKey = "config.bridgingmod.value.ticks")
     private int delayPostBridging = 4; // 4 is vanilla - 3 allows for better forward bridging.
 
 

@@ -15,4 +15,6 @@ public @interface ContinuousRange {
     float max();
 
     float sliderStep() default 0.1f;
+
+    String formatTranslationKey() default "";
 }
