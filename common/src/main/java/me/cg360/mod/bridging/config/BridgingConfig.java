@@ -37,11 +37,9 @@ public class BridgingConfig extends DefaultValueTracker {
     @IncludeExtraDescription(extraParagraphs = 2)
     private boolean enableBridgingAssist = true;
     @Category("feature") @SerialEntry
-    @IncludeExtraDescription
     @ContinuousRange(min = 0.5f, max = 10, sliderStep = 0.1f, formatTranslationKey = "config.bridgingmod.value.distance")   // Should this just be a box?
     private float minimumBridgeReachHorizontal = 2.2f;
     @Category("feature") @SerialEntry
-    @IncludeExtraDescription
     @ContinuousRange(min = 0.5f, max = 10, sliderStep = 0.1f, formatTranslationKey = "config.bridgingmod.value.distance")   // Should this just be a box?
     private float minimumBridgeReachVertical = 1.0f;
     @Category("feature") @SerialEntry
